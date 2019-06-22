@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .mywell {
+        font-size: 2rem;
+        min-height: 20px;
+        color: #bd2d30;
+        padding: 19px;
+        margin-bottom: 20px;
+        background-color:#CED0EA;
+    }
+
+    .label a {
+        display: inline;
+        padding: .3em 1em .3em;
+        font-size: 1em;
+        font-weight: bold;
+        line-height: 2;
+        color: #017E66;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        margin-right: -1.3em;
+        background-color: rgba(1,126,102,0.08);
+        
+    }
+    
+    .label a:hover {
+        color: #fff;
+        background-color: #017E66;
+    }
+</style>
+<div class="container">
+    <div class="row text-center">
+        <h3><span class="glyphicon glyphicon-th"></span>全部分类</h3>
+        <hr>
+        {% for count in get_count %}
+        <div class="col-md-3">
+            <div class="mywell">
+              <span><a href="{% url 'blog:bloglist' count.pk%}">{{ count.name }}</a></span>
+              <span class="badge">{{ count.num_posts }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row text-center">
+        <h3><span class="glyphicon glyphicon-book"></span>标签大全</h3>
+        <hr>
+        {% for tags in get_tags %}    
+        <span class="label"><a href="{% url 'blog:taglist' tags.pk %}">{{ tags.name }}({{ tags.num_posts }})</a></span>
+        {% empty %}
+        暂无标签
+        {% endfor %}
+    </div>
+    <div class="row" style="margin-top: 50px">
+        <div class="col-md-4">
+            <h4>最新笔记</h4>
+            <hr>
+            {% for new in get_new_blog %}
+            <li class="list-unstyled"><a href="{{ new.get_absolute_url}}">{{ forloop.counter }}.{{ new.title }}</a>{{ new.created_time|date:"Y-m-d" }}</li>
+            {% empty%}
+            暂无文章  
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <h4>阅读最多笔记</h4>
+            <hr>
+            {% for hot in get_hot_blog %}
+            <li class="list-unstyled"><a href="{{ hot.get_absolute_url }}">{{ forloop.counter }}.{{ hot.title }}</a>阅读({{ hot.views }})</li>
+            {% empty %}
+            暂无文章  
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <h4>随机推荐</h4>
+            <hr>
+            {% for rand in get_rand_blog %}
+            <li class="list-unstyled"><a href="{{ rand.get_absolute_url }}">{{ forloop.counter }}.{{ rand.title }}</a></li>
+            {% empty %}
+            暂无文章  
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

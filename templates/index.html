@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="color:#505050">
+            <div>
+                <h4><b>日志</b></h4>
+                <div class="alert alert-success">
+                    {% for p in purpose %}                    
+                    <p>{{ p.purpose }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <h4><b>出错记录</b></h4>
+                <div class="alert alert-danger">                    
+                    <p>共搜集错误<b>{{ error_count }}</b>条</p>
+                    <span>已解决<b>{{ status_done_count }}</b>条</span>
+                    <span>未解决<b>{{ status_not_count }}</b>条</span>
+                </div>
+            </div>
+            <div>
+                <h4><b>笔记总数</b></h4>
+                <div class="alert alert-info">
+                    
+                    <p>笔记总数{{ blog_count }}条</p>
+                    {% for cate in  category_count %}
+                    <p>{{ cate.name }}({{ cate.num_posts }})</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <h4><b>共收录资源</b></h4>
+                <div class="alert alert-warning">                    
+                    <p>书籍{{ book_count }}本</p>
+                    <p>技术博客{{ tecblog_count }}个</p>
+                </div>                
+            </div>            
+        </div>
+    </div>
+</div>
+{% endblock content %}

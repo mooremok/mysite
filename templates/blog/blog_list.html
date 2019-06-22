@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h3><b>分类:{{ cate.name }}的文章</b></h3>
+            <hr>
+            <ul class="ul list-unstyled">
+                {% for title in titles %}
+                <li><a href="{% url 'blog:blogdetail' title.pk %}">{{ forloop.counter }}.{{ title.title }} </a><span style="color:grey">({{ title.created_time }})</span></li>
+                {% empty %}
+                该分类未发布文章
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <h4>本分类阅读最少的文章</h4>
+            <hr>
+            {% for less in lessviews %}
+            <li class="list-unstyled"><a href="{% url 'blog:blogdetail' less.pk %}">{{ less.title }}</a><span style="color:grey">({{less.views}})</span></li>
+            {% empty %}
+            该分类未发布文章
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

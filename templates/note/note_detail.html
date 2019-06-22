@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/markdown/code.css' %}">
+{% block content %}
+<style>
+.myerror {
+    background-color:rgba(1,126,102,0.08); color: #017E66; line-height: 3rem; font-weight: bold;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2" style="border-right:1px solid rgb(224, 221, 221)">
+            <div class="text-center myerror">
+                <p>({{notedetail.notetype}})的错误</p>
+            </div>
+            
+            <ul class="ul">
+                {% for i in note_title %}
+                    <li class="list-unstyled"><a href="{% url 'note:notedetail' i.pk %}">{{forloop.counter}}.{{ i.title }}</a></li>
+                {% endfor %}
+            </ul>     
+        </div>
+        <div class="col-md-10">
+            <h3><b>{{ notedetail.title }}</b></h3>
+            <span style="padding-right:20px">{{ notedetail.author }}</span>
+            <span style="padding-right:20px">{{ notedetail.created_time }}</span>
+            <span style="padding-right:20px">阅读({{ notedetail.views }})</span>
+            <span>{{ notedetail.notestatus }}</span>
+            <hr>
+            <div>
+                <blockquote><h4>错误提示</h4></blockquote>
+                {{ notedetail.erinfo | safe }}
+            </div>
+            <hr>
+            <div>
+                <blockquote><h4>解决方案</h4></blockquote>
+                {{ notedetail.res_for | safe }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

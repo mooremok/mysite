@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .label a {
+        display: inline;
+        padding: .3em 1em .3em;
+        font-size: 1em;
+        font-weight: bold;
+        line-height: 2;
+        color: #017E66;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        margin-right: -1.3em;
+        background-color: rgba(1,126,102,0.08);
+       
+    }
+    
+    .label a:hover {
+        color: #fff;
+        background-color: #017E66;
+    } 
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3><b>{{ blog.title }}</b></h3>
+            <span class="glyphicon glyphicon-time">{{ blog.created_time |date:"Y/m/d" }}</span>
+            <span class="glyphicon glyphicon-eye-open" style="padding-left:20px">{{ blog.views }}</span>
+            {% for tag in blog.tag.all %}
+            <span class="label"><a href="{% url 'blog:taglist' tag.pk %}">{{ tag.name }}</a></span>
+            {% endfor %}
+            <hr>
+            {{ blog.content | safe }}
+        </div>
+    </div>
+</div>
+{% endblock content %}

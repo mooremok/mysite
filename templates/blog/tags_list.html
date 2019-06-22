@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    .label a {
+        display: inline;
+        padding: .3em 1em .3em;
+        font-size: 1em;
+        font-weight: bold;
+        line-height: 2;
+        color: #017E66;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25em;
+        margin-right: -1.3em;
+        background-color: rgba(1,126,102,0.08);
+        
+    }
+    
+    .label a:hover {
+        color: #fff;
+        background-color: #017E66;
+    } 
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10">
+            <h3>标签：{{ tags_list.name }}的文章</h3>
+            {% for name in blog_name %}
+            <li class="list-unstyled"><a href="{% url 'blog:blogdetail' name.pk %}">{{ forloop.counter }}.{{ name.title }}</a><span style="color:grey">({{ name.created_time }})</span></li>
+            {% endfor %}
+        </div>
+        <div class="col-md-2">
+            <h4>标签云</h4>
+            {% for tags in get_tags %}
+            <span class="label"><a href="{% url 'blog:taglist' tags.pk %}">{{ tags.name }}({{ tags.num_posts }})</a></span>
+            {% empty %}
+            暂无标签  
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
