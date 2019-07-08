@@ -1,3 +1,4 @@
+import os
 from .base import * #NOQA
 
 SECRET_KEY = '=99ny#f@9p)o(ntrv!89+8)*hs7!ig0of#t$j&gng^8^x#6k6@'
