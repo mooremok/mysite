@@ -18,8 +18,7 @@
         {% empty %}
         暂无书籍资料
         {% endfor %}
-    </div>
-    <hr>
+    </div>    
     <div class="row" style="padding-top: 10px">
         <blockquote>技术博客</blockquote>
         {% for site in sites %}
@@ -39,6 +38,8 @@
             收藏于{{ coll.coll_time | date:'Y-m-d'  }}
             <a href="{{ coll.site_url}}" target="_blank">查看详情</a>
         </div>
+        {% empty %}
+        暂无收藏
         {% endfor %}
     </div>
 </div>

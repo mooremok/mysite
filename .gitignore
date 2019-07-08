@@ -19,6 +19,7 @@ deploy_key_rsa
 __pycache__/
 db.sqlite3
 migrations/
+.vscode/
 
 #Special
 uwsgi.log
