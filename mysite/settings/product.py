@@ -4,7 +4,7 @@ from .base import * #NOQA
 SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['47.111.181.112', 'www.tabworld.cn', 'tabworld.cn']
 
 
 DATABASE_PASSWORD = os.environ['DATABASE_PASSWORD']
