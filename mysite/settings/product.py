@@ -4,7 +4,7 @@ from .base import *
 
 SECRET_KEY = '=99ny#f@9p)o(ntrv!89+8)*hs7!ig0of#t$j&gng^8^x#6k6@'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['47.111.181.112', 'www.tabworld.cn', 'tabworld.cn']
 
