@@ -2,7 +2,7 @@ import os
 from .base import *
 
 
-SECRET_KEY = '=99ny#f@9p)o(ntrv!89+8)*hs7!ig0of#t$j&gng^8^x#6k6@'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 
@@ -10,12 +10,14 @@ ALLOWED_HOSTS = ['47.111.181.112', 'www.tabworld.cn', 'tabworld.cn']
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+
+DATABASE_PASSWORD = os.environ['DATABASE_PASSWORD']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mysite_db',
         'USER': 'root',
-        'PASSWORD': 'guoyiling0320',
+        'PASSWORD': DATABASE_PASSWORD,
         'HOST': 'localhost',
         'PORT': '3306',
     }
