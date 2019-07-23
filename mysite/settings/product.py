@@ -2,8 +2,7 @@ import os
 from .base import *
 
 
-#SECRET_KEY = os.environ['SECRET_KEY']
-SECRET_KEY = '9&lq7t-4tpjv56*pdsqs5g*47r=-dg5xxg9nlrb%lqu@wmgent'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 DEBUG = False
 
